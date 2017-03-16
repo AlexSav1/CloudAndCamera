@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let dao = DAO.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +49,11 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
             
-//            picker.dismiss(animated: true, completion: {
-//                self.createPresentItem(with: image)
-//            })
+            picker.dismiss(animated: true, completion: {
+                
+                let imageData = UIImageJPEGRepresentation(image, 1.0)
+                self.dao.putImageInStorage(nameOfFile: "sample", imageData: imageData!)
+            })
             
         }
         

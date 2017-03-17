@@ -24,18 +24,19 @@ class DAO {
     let storageRef : FIRStorageReference
     let imagesReference : FIRStorageReference
     var photos = [Photo]()
+    
     private init() {
+        
         self.storage = FIRStorage.storage()
         self.storageRef = self.storage.reference()
         self.imagesReference = self.storageRef.child("images")
-        
-        
         
     }
     
     
     
     func putImageInStorage(nameOfFile : String, imageData : Data){
+        
         let uniqueString = UUID.init()
         print(uniqueString)
         let sampleRef = storageRef.child("images/\(uniqueString).jpg")
@@ -51,9 +52,11 @@ class DAO {
             if let url = downloadURL(){
                 // create photo object instance with download url
                 let newPhoto = Photo(url: url)
+                newPhoto.comments = []
+                newPhoto.likes = 0
                 self.photos.append(newPhoto)
                 //write photo to database using alamofire
-                
+                self.writeToDataBase(photoObject: newPhoto)
             }
             
         }
@@ -61,12 +64,13 @@ class DAO {
     }
     
     
-    func writeToDataBase(){
+    func writeToDataBase(photoObject: Photo){
         
-        let myURL = URL(fileURLWithPath: "www.google.com")
+        //gotta add the sample.jpg or whatever at the end
+        let myURL = URL(fileURLWithPath: "https://cloudandcamera.firebaseio.com/images/")
         
         
-        let params = ["url":"cool", "comments": "yup"]
+        let params = ["url":photoObject.downloadURL, "comments": photoObject.comments!, "likes": photoObject.likes!] as [String : Any]
         Alamofire.request(myURL, method: .put, parameters: params, encoding:JSONEncoding.default, headers: nil).responseJSON { (response :DataResponse<Any>) in
             
             //response.error

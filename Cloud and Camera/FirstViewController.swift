@@ -11,6 +11,8 @@ import UIKit
 class FirstViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
+
+    let detailsVC: DetailsViewController = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
     
     let dao = DAO.sharedInstance
     
@@ -19,7 +21,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Do any additional setup after loading the view, typically from a nib.
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
+        //self.detailsVC = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
         
         // Register cell classes
         //self.collectionView!.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -73,6 +75,15 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedPhoto: Photo = self.dao.photos[indexPath.row]
+        
+        self.detailsVC.selectedPhoto = selectedPhoto
+        self.navigationController?.pushViewController(self.detailsVC, animated: true)
+        
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0

@@ -101,7 +101,7 @@ class DAO {
                         
                         
                         if let photoDict = photo.value as? [String:Any] {
-                            if let comments = photoDict["comments"], let likes = photoDict["likes"] as? Int, let url = photoDict["url"] as? String {
+                            if let comments = photoDict["comments"] as? [String], let likes = photoDict["likes"] as? Int, let url = photoDict["url"] as? String {
                                 
                                 print("comments: \(comments)")
                                 print("likes: \(likes)")

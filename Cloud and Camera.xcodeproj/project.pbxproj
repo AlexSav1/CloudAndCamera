@@ -19,6 +19,8 @@
 		AA852D821E7AE10F004684F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA852D811E7AE10F004684F0 /* GoogleService-Info.plist */; };
 		AA852D841E7AF3D6004684F0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA852D831E7AF3D6004684F0 /* Photo.swift */; };
 		AA852D861E7AF787004684F0 /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA852D851E7AF787004684F0 /* DAO.swift */; };
+		FAB823CF1E81E0F2005CB36C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB823CD1E81E0F2005CB36C /* DetailsViewController.swift */; };
+		FAB823D01E81E0F2005CB36C /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB823CE1E81E0F2005CB36C /* DetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		AA852D831E7AF3D6004684F0 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		AA852D851E7AF787004684F0 /* DAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
 		F0A1095262E41A98413EDA0D /* Pods-Cloud and Camera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloud and Camera.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cloud and Camera/Pods-Cloud and Camera.release.xcconfig"; sourceTree = "<group>"; };
+		FAB823CD1E81E0F2005CB36C /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		FAB823CE1E81E0F2005CB36C /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 				AA852D831E7AF3D6004684F0 /* Photo.swift */,
 				AA852D7D1E79D590004684F0 /* ImageCollectionViewCell.swift */,
 				AA852D6F1E79D31B004684F0 /* Main.storyboard */,
+				FAB823CD1E81E0F2005CB36C /* DetailsViewController.swift */,
+				FAB823CE1E81E0F2005CB36C /* DetailsViewController.xib */,
 				AA852D721E79D31B004684F0 /* Assets.xcassets */,
 				AA852D741E79D31B004684F0 /* LaunchScreen.storyboard */,
 				AA852D771E79D31B004684F0 /* Info.plist */,
@@ -172,6 +178,7 @@
 			files = (
 				AA852D761E79D31B004684F0 /* LaunchScreen.storyboard in Resources */,
 				AA852D821E7AE10F004684F0 /* GoogleService-Info.plist in Resources */,
+				FAB823D01E81E0F2005CB36C /* DetailsViewController.xib in Resources */,
 				AA852D731E79D31B004684F0 /* Assets.xcassets in Resources */,
 				AA852D711E79D31B004684F0 /* Main.storyboard in Resources */,
 			);
@@ -236,6 +243,7 @@
 				AA852D6E1E79D31B004684F0 /* SecondViewController.swift in Sources */,
 				AA852D6A1E79D31B004684F0 /* AppDelegate.swift in Sources */,
 				AA852D7E1E79D590004684F0 /* ImageCollectionViewCell.swift in Sources */,
+				FAB823CF1E81E0F2005CB36C /* DetailsViewController.swift in Sources */,
 				AA852D6C1E79D31B004684F0 /* FirstViewController.swift in Sources */,
 				AA852D841E7AF3D6004684F0 /* Photo.swift in Sources */,
 			);

@@ -38,8 +38,8 @@ class DAO {
     func putImageInStorage(nameOfFile : String, imageData : Data){
         
         let uniqueString = UUID.init()
-        print(uniqueString)
-        let sampleRef = storageRef.child("images/\(uniqueString).jpg")
+        //print(uniqueString)
+        let sampleRef = storageRef.child("images/\(uniqueString)")
         
         sampleRef.put(imageData, metadata: nil) { (metadata, error) in
             guard let metadata = metadata else {
@@ -52,11 +52,11 @@ class DAO {
             if let url = downloadURL(){
                 // create photo object instance with download url
                 let newPhoto = Photo(url: url)
-                newPhoto.comments = []
+                newPhoto.comments = ["yup"]
                 newPhoto.likes = 0
                 self.photos.append(newPhoto)
                 //write photo to database using alamofire
-                self.writeToDataBase(photoObject: newPhoto)
+                self.writeToDataBase(photoObject: newPhoto, uniqueString: uniqueString)
             }
             
         }
@@ -64,22 +64,67 @@ class DAO {
     }
     
     
-    func writeToDataBase(photoObject: Photo){
+    func writeToDataBase(photoObject: Photo, uniqueString: UUID){
         
         //gotta add the sample.jpg or whatever at the end
-        let myURL = URL(fileURLWithPath: "https://cloudandcamera.firebaseio.com/images/")
+        let myURL = URL(string: "https://cloudandcamera.firebaseio.com/images.json")
         
         
-        let params = ["url":photoObject.downloadURL, "comments": photoObject.comments!, "likes": photoObject.likes!] as [String : Any]
-        Alamofire.request(myURL, method: .put, parameters: params, encoding:JSONEncoding.default, headers: nil).responseJSON { (response :DataResponse<Any>) in
+        let urlString: String = photoObject.downloadURL.absoluteString
+        
+        let params = ["url":urlString, "comments": photoObject.comments!, "likes": photoObject.likes!] as [String : Any]
+        Alamofire.request(myURL!, method: .post, parameters: params, encoding:JSONEncoding.default, headers: nil).responseJSON { (response :DataResponse<Any>) in
             
             //response.error
-        
+            print(response)
+            
             
         }
         
     }
+    
+    func createPhotosFromDB() {
+        
+        let url = URL(string: "https://cloudandcamera.firebaseio.com/images.json")
+        
+        
+        
+        Alamofire.request(url!, method: .get, parameters: nil, encoding:JSONEncoding.default, headers: nil).responseJSON { (response :DataResponse<Any>) in
+            
 
+                if let JSON = response.result.value{
+                    //print("JSON: \(JSON)")
+                    
+                    let result = JSON as! [String: Any]
+                    
+                    for photo in result{
+                        
+                        
+                        if let photoDict = photo.value as? [String:Any] {
+                            if let comments = photoDict["comments"], let likes = photoDict["likes"] as? Int, let url = photoDict["url"] as? String {
+                                
+                                print("comments: \(comments)")
+                                print("likes: \(likes)")
+                                print("url: \(url)")
+                                
+                                let theUrl = URL(string: url)
+                                
+                                let newPhoto = Photo(url: theUrl!)
+                                newPhoto.likes = likes
+                                newPhoto.comments = comments
+                                self.photos.append(newPhoto)
+                                
+                            }
+                        }
+                    }
+                }
+        }
+  
+        
+    }
+    
+    
+    
     
     
 }

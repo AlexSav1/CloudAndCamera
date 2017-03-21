@@ -11,7 +11,7 @@ import UIKit
 class Photo: NSObject {
 
     //let name: String
-    var comments : [Any]?
+    var comments : Any?
     let downloadURL: URL
     var likes : Int?
     

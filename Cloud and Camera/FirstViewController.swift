@@ -21,6 +21,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Do any additional setup after loading the view, typically from a nib.
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.navigationItem.title = "Photo Library"
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         //self.detailsVC = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
         
         // Register cell classes
@@ -68,9 +70,10 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         let currentPhoto: Photo = self.dao.photos[indexPath.row]
         
         // Configure the cell
+        //downloading the image is making it take foreverrrrr
         let data = try? Data(contentsOf: currentPhoto.downloadURL)
         cell.imageView.image = UIImage(data: data!)
-        
+        //cell.imageView.image = UIImage(named: "ship")
 
         return cell
     }

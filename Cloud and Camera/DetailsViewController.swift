@@ -22,6 +22,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.navigationItem.title = "Photo Detail"
         
         let data = try? Data(contentsOf: selectedPhoto.downloadURL)
         self.imageView.image = UIImage(data: data!)
@@ -54,7 +55,8 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
      
      // Configure the cell...
-        cell.textLabel?.text = self.selectedPhoto.comments?[indexPath.row]
+        cell.textLabel?.text = "Papa Cheeks"
+        cell.detailTextLabel?.text = self.selectedPhoto.comments?[indexPath.row]
      
         return cell
      }

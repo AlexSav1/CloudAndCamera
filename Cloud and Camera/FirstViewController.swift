@@ -71,8 +71,14 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         // Configure the cell
         //downloading the image is making it take foreverrrrr
-        let data = try? Data(contentsOf: currentPhoto.downloadURL)
-        cell.imageView.image = UIImage(data: data!)
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: currentPhoto.downloadURL)
+            DispatchQueue.main.async {
+                cell.imageView.image = UIImage(data: data!)
+                currentPhoto.actualImage = UIImage(data: data!)
+            }
+        }
+
         //cell.imageView.image = UIImage(named: "ship")
 
         return cell
@@ -81,7 +87,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let selectedPhoto: Photo = self.dao.photos[indexPath.row]
-        
+    
         self.detailsVC.selectedPhoto = selectedPhoto
         self.navigationController?.pushViewController(self.detailsVC, animated: true)
         

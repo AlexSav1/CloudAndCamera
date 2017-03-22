@@ -14,6 +14,7 @@ class Photo: NSObject {
     var comments : [String]?
     let downloadURL: URL
     var likes : Int?
+    var actualImage: UIImage?
     
     init(url: URL) {
         //self.name = imageName

@@ -26,21 +26,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CQd-Qy-GMk">
-                                    <size key="itemSize" width="155" height="144"/>
+                                    <size key="itemSize" width="103" height="115"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="bDo-z3-mK3" customClass="ImageCollectionViewCell" customModule="Cloud_and_Camera" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="155" height="144"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="103" height="115"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="155" height="144"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="103" height="115"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6h3-pM-Pji">
-                                                    <rect key="frame" x="0.0" y="0.0" width="162" height="152"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="123"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -67,7 +67,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2266" y="-392"/>
+            <point key="canvasLocation" x="2264.8000000000002" y="-392.65367316341832"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -166,7 +166,7 @@
             <objects>
                 <navigationController id="C9X-4t-xcf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="First" selectedImage="first" id="uXS-cS-xrc"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="noy-ZB-o10">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="noy-ZB-o10">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.43921568630000002" green="0.4431372549" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

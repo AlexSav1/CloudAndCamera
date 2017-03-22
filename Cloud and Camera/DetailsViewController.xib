@@ -15,6 +15,7 @@
                 <outlet property="imageView" destination="6u4-NK-xyu" id="EKs-gX-f7C"/>
                 <outlet property="likesLabel" destination="fpC-61-omv" id="Cfj-wS-zQs"/>
                 <outlet property="tableView" destination="FN5-ro-X9Z" id="DCn-FL-rnl"/>
+                <outlet property="textField" destination="KeX-K8-BQa" id="4at-xV-kqt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -50,18 +51,30 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FN5-ro-X9Z">
-                    <rect key="frame" x="0.0" y="365.5" width="375" height="301.5"/>
+                    <rect key="frame" x="0.0" y="366" width="375" height="271"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Add a comment..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KeX-K8-BQa">
+                    <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="KeX-K8-BQa" secondAttribute="height" multiplier="25:2" id="zYu-Lp-IO9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="6u4-NK-xyu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0iD-bX-UQD"/>
                 <constraint firstItem="6u4-NK-xyu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0jo-MZ-bwa"/>
+                <constraint firstAttribute="bottom" secondItem="KeX-K8-BQa" secondAttribute="bottom" id="EOj-RH-cdi"/>
+                <constraint firstItem="KeX-K8-BQa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KJu-xD-CRn"/>
                 <constraint firstItem="FN5-ro-X9Z" firstAttribute="top" secondItem="5w9-rG-PEH" secondAttribute="bottom" id="NIM-la-b5H"/>
                 <constraint firstItem="5w9-rG-PEH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="U83-pI-PLa"/>
-                <constraint firstAttribute="bottom" secondItem="FN5-ro-X9Z" secondAttribute="bottom" id="cVO-DI-JI5"/>
+                <constraint firstItem="KeX-K8-BQa" firstAttribute="top" secondItem="FN5-ro-X9Z" secondAttribute="bottom" id="b5A-uZ-2cQ"/>
                 <constraint firstAttribute="trailing" secondItem="FN5-ro-X9Z" secondAttribute="trailing" id="efl-Xf-xSD"/>
+                <constraint firstAttribute="trailing" secondItem="KeX-K8-BQa" secondAttribute="trailing" id="gff-Lq-KH8"/>
                 <constraint firstAttribute="trailing" secondItem="6u4-NK-xyu" secondAttribute="trailing" id="hsj-Ne-E4e"/>
                 <constraint firstItem="FN5-ro-X9Z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lHC-WQ-T6f"/>
                 <constraint firstAttribute="trailing" secondItem="5w9-rG-PEH" secondAttribute="trailing" id="laQ-hc-ZUB"/>

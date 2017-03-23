@@ -36,8 +36,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
             
         } else{
             
-            //show alert
-            
+            //show alerts
             let noCameraAlert = UIAlertController(title: "Error", message: "No camera available", preferredStyle: .alert)
             
             noCameraAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))

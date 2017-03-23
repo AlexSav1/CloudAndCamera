@@ -13,14 +13,15 @@ class Photo: NSObject {
     var name: String?
     var comments : [String]?
     let downloadURL: URL
+    let UID: String
     var likes : Int?
     var actualImage: UIImage?
     
-    init(url: URL) {
-        //self.name = imageName
+    init(url: URL, UID: String) {
+        
         self.downloadURL = url
-        //self.comments = [Any]()
-        //self.likes = like
+        self.UID = UID
+        
     }
     
 }

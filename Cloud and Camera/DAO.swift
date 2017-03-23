@@ -38,7 +38,8 @@ class DAO {
     func putImageInStorage(nameOfFile : String, imageData : Data){
         
         let uniqueString = UUID.init()
-        //print(uniqueString)
+        let uidString = uniqueString.uuidString
+        
         let sampleRef = storageRef.child("images/\(uniqueString)")
         
         sampleRef.put(imageData, metadata: nil) { (metadata, error) in
@@ -51,7 +52,7 @@ class DAO {
             
             if let url = downloadURL(){
                 // create photo object instance with download url
-                let newPhoto = Photo(url: url)
+                let newPhoto = Photo(url: url, UID: uidString)
                 newPhoto.comments = ["yup"]
                 newPhoto.likes = 0
                 self.photos.append(newPhoto)
@@ -71,8 +72,10 @@ class DAO {
         
         
         let urlString: String = photoObject.downloadURL.absoluteString
+        //let UIDString: String = photoObject.UID.uuidString
         
-        let params = ["url":urlString, "comments": photoObject.comments!, "likes": photoObject.likes!] as [String : Any]
+        let params = ["url":urlString, "comments": photoObject.comments!, "likes": photoObject.likes!, "UUID": photoObject.UID] as [String : Any]
+        
         Alamofire.request(myURL!, method: .post, parameters: params, encoding:JSONEncoding.default, headers: nil).responseJSON { (response :DataResponse<Any>) in
             
             //response.error
@@ -112,7 +115,7 @@ class DAO {
                         
                         
                         if let photoDict = photo.value as? [String:Any] {
-                            if let comments = photoDict["comments"] as? [String], let likes = photoDict["likes"] as? Int, let url = photoDict["url"] as? String {
+                            if let comments = photoDict["comments"] as? [String], let likes = photoDict["likes"] as? Int, let url = photoDict["url"] as? String, let uid = photoDict["UUID"] as? String {
                                 
                                 print("comments: \(comments)")
                                 print("likes: \(likes)")
@@ -120,7 +123,7 @@ class DAO {
                                 
                                 let theUrl = URL(string: url)
                                 
-                                let newPhoto = Photo(url: theUrl!)
+                                let newPhoto = Photo(url: theUrl!, UID: uid)
                                 newPhoto.likes = likes
                                 newPhoto.comments = comments
                                 newPhoto.name = photo.key
@@ -160,5 +163,44 @@ class DAO {
     }
 
     
-    
+    func deletePhoto(photoObject: Photo){
+        
+        let sampleRef = storageRef.child("images/\(photoObject.UID)")
+        
+        // Delete the file
+        sampleRef.delete { error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+                print(error)
+            } else {
+                // File deleted successfully
+                print("photo deleted successfully")
+                self.deleteMetaData(photoObject: photoObject)
+            }
+        }
+        
+        
+    }
+
+    func deleteMetaData(photoObject: Photo){
+        
+        
+        let urlString = "https://cloudandcamera.firebaseio.com/images/\(photoObject.name!).json"
+        
+        guard let urlSafeString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        
+        let myURL = URL(string: urlSafeString)
+        
+        
+        Alamofire.request(myURL!, method: .delete, parameters: nil, encoding:JSONEncoding.default, headers: nil).responseJSON { (response :DataResponse<Any>) in
+            
+            print(response)
+            
+        }
+        
+    }
+
+
 }
+
+

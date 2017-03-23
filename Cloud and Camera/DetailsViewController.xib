@@ -7,12 +7,14 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="Cloud_and_Camera" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="6u4-NK-xyu" id="EKs-gX-f7C"/>
+                <outlet property="likeButton" destination="Zx3-Lw-KIk" id="CeR-Ob-Zda"/>
                 <outlet property="likesLabel" destination="fpC-61-omv" id="Cfj-wS-zQs"/>
                 <outlet property="tableView" destination="FN5-ro-X9Z" id="DCn-FL-rnl"/>
                 <outlet property="textField" destination="KeX-K8-BQa" id="4at-xV-kqt"/>
@@ -30,24 +32,33 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5w9-rG-PEH">
                     <rect key="frame" x="0.0" y="301.5" width="375" height="64"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 Likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpC-61-omv">
-                            <rect key="frame" x="42" y="19" width="83" height="27"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzG-vR-wFq">
-                            <rect key="frame" x="290" y="17" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Edit"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzG-vR-wFq">
+                            <rect key="frame" x="251.5" y="25.5" width="60" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="OzG-vR-wFq" secondAttribute="height" multiplier="14:3" id="B36-hM-hcV"/>
+                            </constraints>
+                            <state key="normal" image="icn_dots"/>
                             <connections>
                                 <action selector="editButtonPressed:" destination="-1" eventType="touchUpInside" id="m9o-O4-ymL"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpC-61-omv">
+                            <rect key="frame" x="81" y="21.5" width="63.5" height="20.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="fpC-61-omv" secondAttribute="height" multiplier="83:27" id="G1t-Na-Ipn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="5w9-rG-PEH" secondAttribute="height" multiplier="375:64" id="3BD-n6-Mu8"/>
+                        <constraint firstItem="OzG-vR-wFq" firstAttribute="centerX" secondItem="5w9-rG-PEH" secondAttribute="centerX" multiplier="1.5" id="FnL-Ab-nza"/>
+                        <constraint firstItem="OzG-vR-wFq" firstAttribute="height" secondItem="5w9-rG-PEH" secondAttribute="height" multiplier="0.2" id="HGf-oX-TRu"/>
+                        <constraint firstItem="fpC-61-omv" firstAttribute="centerX" secondItem="5w9-rG-PEH" secondAttribute="centerX" multiplier="0.6" id="OS7-bT-hfc"/>
+                        <constraint firstItem="fpC-61-omv" firstAttribute="centerY" secondItem="5w9-rG-PEH" secondAttribute="centerY" id="gfG-v2-cJw"/>
+                        <constraint firstItem="OzG-vR-wFq" firstAttribute="centerY" secondItem="5w9-rG-PEH" secondAttribute="centerY" id="l9A-Xp-42c"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FN5-ro-X9Z">
@@ -63,11 +74,23 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zx3-Lw-KIk">
+                    <rect key="frame" x="21.5" y="317.5" width="32.5" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Zx3-Lw-KIk" secondAttribute="height" multiplier="43:42" id="cO3-19-YdS"/>
+                    </constraints>
+                    <state key="normal" image="icn_like_inactive"/>
+                    <connections>
+                        <action selector="likeButtonPressed:" destination="-1" eventType="touchUpInside" id="ITb-jT-1BW"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="6u4-NK-xyu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0iD-bX-UQD"/>
                 <constraint firstItem="6u4-NK-xyu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0jo-MZ-bwa"/>
+                <constraint firstItem="Zx3-Lw-KIk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="36N-fs-WXf"/>
+                <constraint firstItem="Zx3-Lw-KIk" firstAttribute="height" secondItem="5w9-rG-PEH" secondAttribute="height" multiplier="0.5" id="Cpc-Xd-YmU"/>
                 <constraint firstAttribute="bottom" secondItem="KeX-K8-BQa" secondAttribute="bottom" id="EOj-RH-cdi"/>
                 <constraint firstItem="KeX-K8-BQa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KJu-xD-CRn"/>
                 <constraint firstItem="FN5-ro-X9Z" firstAttribute="top" secondItem="5w9-rG-PEH" secondAttribute="bottom" id="NIM-la-b5H"/>
@@ -78,10 +101,15 @@
                 <constraint firstAttribute="trailing" secondItem="6u4-NK-xyu" secondAttribute="trailing" id="hsj-Ne-E4e"/>
                 <constraint firstItem="FN5-ro-X9Z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lHC-WQ-T6f"/>
                 <constraint firstAttribute="trailing" secondItem="5w9-rG-PEH" secondAttribute="trailing" id="laQ-hc-ZUB"/>
+                <constraint firstItem="Zx3-Lw-KIk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" multiplier="0.2" id="oER-Gj-MKH"/>
                 <constraint firstItem="5w9-rG-PEH" firstAttribute="top" secondItem="6u4-NK-xyu" secondAttribute="bottom" id="uyV-5a-mlm"/>
                 <constraint firstItem="5w9-rG-PEH" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="xdx-kL-ko4"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="icn_dots" width="151" height="31"/>
+        <image name="icn_like_inactive" width="151" height="133"/>
+    </resources>
 </document>

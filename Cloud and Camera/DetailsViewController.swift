@@ -18,9 +18,13 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet weak var likeButton: UIButton!
+    
     var selectedPhoto: Photo! = nil
     
     let dao = DAO.sharedInstance
+    
+    var photoDeleted: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +46,70 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
         self.imageView.image = self.selectedPhoto.actualImage
+        self.likesLabel.text = "\(self.selectedPhoto.likes!) Likes"
+        
+        if(self.selectedPhoto.likes == 0){
+            self.likeButton.setImage(UIImage(named: "icn_like_inactive"), for: .normal)
+        } else {
+            self.likeButton.setImage(UIImage(named: "icn_like_active"), for: .normal)
+        }
+        
         self.tableView.reloadData()
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
+        
+        //ask if user wants to delete photo or cancel
+        let deletePhotoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Create the actions.
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            
+            print("cancel")
+        }
+        
+        let destructiveAction = UIAlertAction(title: "Delete photo", style: .default) { _ in
+            
+            print("delete")
+            
+            let photoIndex = self.dao.photos.index(of: self.selectedPhoto)
+            
+            self.dao.photos.remove(at: photoIndex!)
+            
+            self.photoDeleted = true
+            
+            self.dao.deletePhoto(photoObject: self.selectedPhoto)
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        // Add the actions.
+        deletePhotoAlert.addAction(cancelAction)
+       deletePhotoAlert.addAction(destructiveAction)
+        
+        self.present(deletePhotoAlert, animated: true) {
+            print("NOT")
+        }
+
+    }
+    
+    @IBAction func likeButtonPressed(_ sender: Any) {
+        
+        if(self.selectedPhoto.likes == 0){
+            
+            self.likeButton.setImage(UIImage(named: "icn_like_active"), for: .normal)
+            self.selectedPhoto.likes! = 1
+            self.likesLabel.text = "\(self.selectedPhoto.likes!) Likes"
+        } else {
+            
+            self.likeButton.setImage(UIImage(named: "icn_like_inactive"), for: .normal)
+            self.selectedPhoto.likes! = 0
+            self.likesLabel.text = "\(self.selectedPhoto.likes!) Likes"
+        }
         
     }
     
@@ -117,7 +180,11 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewWillDisappear(_ animated: Bool) {
         print("POPPING DETAIL!")
-        self.dao.patchToDataBase(photoObject: self.selectedPhoto)
+        
+        if(self.photoDeleted == false){
+            self.dao.patchToDataBase(photoObject: self.selectedPhoto)
+        }
+        
     }
     
 // MARK:

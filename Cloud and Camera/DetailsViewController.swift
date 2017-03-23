@@ -20,6 +20,8 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var selectedPhoto: Photo! = nil
     
+    let dao = DAO.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -37,7 +39,8 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
 
-
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.imageView.image = self.selectedPhoto.actualImage
         self.tableView.reloadData()
@@ -112,6 +115,10 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
      }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        print("POPPING DETAIL!")
+        self.dao.patchToDataBase(photoObject: self.selectedPhoto)
+    }
     
 // MARK:
 // MARK: UITextFieldDelegate Extension

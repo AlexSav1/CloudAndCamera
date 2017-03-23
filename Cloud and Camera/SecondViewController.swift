@@ -23,11 +23,28 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func takePhotoPressed(_ sender: Any) {
         
         let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .camera
         
-        imagePicker.delegate = self
+        //if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum)
         
-        self.present(imagePicker, animated: true, completion: nil)
+        if(UIImagePickerController.isSourceTypeAvailable(.camera)){
+            
+            imagePicker.sourceType = .camera
+            imagePicker.delegate = self
+            
+            self.present(imagePicker, animated: true, completion: nil)
+
+            
+        } else{
+            
+            //show alert
+            
+            let noCameraAlert = UIAlertController(title: "Error", message: "No camera available", preferredStyle: .alert)
+            
+            noCameraAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            
+            self.present(noCameraAlert, animated: true, completion: nil)
+            
+        }
         
     }
     
@@ -36,7 +53,6 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
-        
         
         self.present(imagePicker, animated: true, completion: nil)
         

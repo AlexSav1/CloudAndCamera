@@ -10,7 +10,7 @@ import UIKit
 
 class Photo: NSObject {
 
-    //let name: String
+    var name: String?
     var comments : [String]?
     let downloadURL: URL
     var likes : Int?

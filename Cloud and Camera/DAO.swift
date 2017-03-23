@@ -56,7 +56,7 @@ class DAO {
                 newPhoto.likes = 0
                 self.photos.append(newPhoto)
                 //write photo to database using alamofire
-                self.writeToDataBase(photoObject: newPhoto, uniqueString: uniqueString)
+                self.writeToDataBase(photoObject: newPhoto)
             }
             
         }
@@ -64,7 +64,7 @@ class DAO {
     }
     
     
-    func writeToDataBase(photoObject: Photo, uniqueString: UUID){
+    func writeToDataBase(photoObject: Photo){
         
         //gotta add the sample.jpg or whatever at the end
         let myURL = URL(string: "https://cloudandcamera.firebaseio.com/images.json")
@@ -77,6 +77,15 @@ class DAO {
             
             //response.error
             print(response)
+            
+            if let JSON = response.result.value{
+                //print("JSON: \(JSON)")
+                
+                if let result = JSON as? [String: Any]{
+                    photoObject.name = result["name"] as! String?
+                    
+                }
+            }
             
             
         }
@@ -95,7 +104,9 @@ class DAO {
                 if let JSON = response.result.value{
                     //print("JSON: \(JSON)")
                     
-                    let result = JSON as! [String: Any]
+                    if let result = JSON as? [String: Any]{
+                        
+                    
                     
                     for photo in result{
                         
@@ -112,19 +123,42 @@ class DAO {
                                 let newPhoto = Photo(url: theUrl!)
                                 newPhoto.likes = likes
                                 newPhoto.comments = comments
+                                newPhoto.name = photo.key
                                 self.photos.append(newPhoto)
                                 
                             }
                         }
                     }
                 }
+            }
         }
   
         
     }
     
     
-    
+    func patchToDataBase(photoObject: Photo){
+        
+//        var escapedAddress = address.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        
+        let urlString = "https://cloudandcamera.firebaseio.com/images/\(photoObject.name!).json"
+        guard let urlSafeString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        
+        let myURL = URL(string: urlSafeString)
+        
+        
+        
+        let params = ["comments": photoObject.comments!, "likes": photoObject.likes!] as [String : Any]
+        Alamofire.request(myURL!, method: .patch, parameters: params, encoding:JSONEncoding.default, headers: nil).responseJSON { (response :DataResponse<Any>) in
+            
+            //response.error
+            print(response)
+            
+            
+        }
+        
+    }
+
     
     
 }

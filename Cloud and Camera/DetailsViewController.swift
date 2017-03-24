@@ -47,6 +47,8 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.photoDeleted = false
+        
         self.imageView.image = self.selectedPhoto.actualImage
         self.likesLabel.text = "\(self.selectedPhoto.likes!) Likes"
         
@@ -84,12 +86,12 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             self.dao.deletePhoto(photoObject: self.selectedPhoto)
             
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
         
         // Add the actions.
         deletePhotoAlert.addAction(cancelAction)
-       deletePhotoAlert.addAction(destructiveAction)
+        deletePhotoAlert.addAction(destructiveAction)
         
         self.present(deletePhotoAlert, animated: true) {
             print("NOT")

@@ -165,7 +165,7 @@
         <scene sceneID="ShW-H0-hMy">
             <objects>
                 <navigationController id="C9X-4t-xcf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="First" selectedImage="first" id="uXS-cS-xrc"/>
+                    <tabBarItem key="tabBarItem" title="First" image="first" id="uXS-cS-xrc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="noy-ZB-o10">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

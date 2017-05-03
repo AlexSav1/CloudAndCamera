@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class FirstViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -21,6 +21,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Do any additional setup after loading the view, typically from a nib.
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.dao.reloadDelegate = self
         self.navigationItem.title = "Photo Library"
         self.navigationController?.navigationBar.tintColor = UIColor.white
         //self.detailsVC = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
@@ -106,6 +107,18 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
+
+}
+
+
+
+extension FirstViewController: ReloadDelegate {
+    
+    func reloadCollectionView() {
+        self.collectionView.reloadData()
+    }
+    
+}
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        return CGSize(width: 160, height: 160)
 //    }
@@ -140,5 +153,5 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
      }
      */
     
-}
+
 

@@ -16,9 +16,11 @@ class DAO {
     
     
 //    let storage = FIRStorage.storage()
-//    
+//
 //    // Create a storage reference from our storage service
 //    let storageRef = storage.reference()
+    
+    weak var reloadDelegate: ReloadDelegate?
     
     let storage : FIRStorage
     let storageRef : FIRStorageReference
@@ -86,7 +88,7 @@ class DAO {
                 
                 if let result = JSON as? [String: Any]{
                     photoObject.name = result["name"] as! String?
-                    
+                    self.reloadDelegate?.reloadCollectionView()
                 }
             }
             

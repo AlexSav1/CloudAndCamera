@@ -69,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="2264.8000000000002" y="-392.65367316341832"/>
         </scene>
-        <!--Second-->
+        <!--Photo-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Cloud_and_Camera" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,7 +136,7 @@
                             <constraint firstItem="OV9-5o-Dgn" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="yG4-A7-bDZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Photo" image="photo" selectedImage="photo" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,11 +161,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--First-->
+        <!--Home-->
         <scene sceneID="ShW-H0-hMy">
             <objects>
                 <navigationController id="C9X-4t-xcf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="uXS-cS-xrc"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="uXS-cS-xrc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="noy-ZB-o10">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -186,7 +186,7 @@
     <resources>
         <image name="btn_takephoto" width="151" height="115"/>
         <image name="btn_uploadphoto" width="151" height="134"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="home" width="22" height="25"/>
+        <image name="photo" width="22" height="16"/>
     </resources>
 </document>

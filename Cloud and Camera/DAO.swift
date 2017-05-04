@@ -14,16 +14,11 @@ class DAO {
     
     static let sharedInstance = DAO()
     
-    
-//    let storage = FIRStorage.storage()
-//    
-//    // Create a storage reference from our storage service
-//    let storageRef = storage.reference()
-    
     let storage : FIRStorage
     let storageRef : FIRStorageReference
     let imagesReference : FIRStorageReference
     var photos = [Photo]()
+    var cool: String?
     
     private init() {
         
@@ -34,7 +29,6 @@ class DAO {
     }
     
     
-    
     func putImageInStorage(nameOfFile : String, imageData : Data){
         
         let uniqueString = UUID.init()
@@ -42,9 +36,11 @@ class DAO {
         
         let sampleRef = storageRef.child("images/\(uniqueString)")
         
+        
         sampleRef.put(imageData, metadata: nil) { (metadata, error) in
             guard let metadata = metadata else {
                 // Uh-oh, an error occurred!
+                print("error putting image in storage")
                 return
             }
             // Metadata contains file metadata such as size, content-type, and download URL.
@@ -63,7 +59,6 @@ class DAO {
         }
         
     }
-    
     
     func writeToDataBase(photoObject: Photo){
         
@@ -132,7 +127,9 @@ class DAO {
                             }
                         }
                     }
-                }
+                    } else {
+                        print("could not get usable result")
+                    }
             }
         }
   
@@ -141,8 +138,6 @@ class DAO {
     
     
     func patchToDataBase(photoObject: Photo){
-        
-//        var escapedAddress = address.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         
         let urlString = "https://cloudandcamera.firebaseio.com/images/\(photoObject.name!).json"
         guard let urlSafeString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }

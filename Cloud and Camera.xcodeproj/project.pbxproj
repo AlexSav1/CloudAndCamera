@@ -149,6 +149,7 @@
 				TargetAttributes = {
 					AA852D651E79D31B004684F0 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7B2WPFR4VK;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -369,6 +370,7 @@
 			baseConfigurationReference = 141EC0C967150C373343C9C0 /* Pods-Cloud and Camera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7B2WPFR4VK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos/Alamofire",
@@ -387,6 +389,7 @@
 			baseConfigurationReference = F0A1095262E41A98413EDA0D /* Pods-Cloud and Camera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7B2WPFR4VK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Release-iphoneos/Alamofire",

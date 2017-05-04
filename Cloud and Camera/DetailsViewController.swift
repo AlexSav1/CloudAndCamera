@@ -32,6 +32,9 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.dataSource = self
         self.textField.delegate = self
         
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 140
+        
         self.navigationItem.title = "Photo Detail"
         self.tabBarController?.tabBar.isTranslucent = false
 
@@ -41,6 +44,8 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
+        //self.tableView.register(CommentsTableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView.register(UINib(nibName: "CommentsTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
     }
 
     
@@ -170,12 +175,15 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? CommentsTableViewCell ?? CommentsTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
             
      
      // Configure the cell...
-        cell.textLabel?.text = "Papa Cheeks"
-        cell.detailTextLabel?.text = self.selectedPhoto.comments?[indexPath.row]
+        cell.setText(text: self.selectedPhoto.comments![indexPath.row])
+        //cell.customTextLabel.text = self.selectedPhoto.comments?[indexPath.row]
+
+//        cell.textLabel?.text = "Papa Cheeks"
+//        cell.detailTextLabel?.text = self.selectedPhoto.comments?[indexPath.row]
      
         return cell
      }

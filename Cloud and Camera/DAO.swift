@@ -81,7 +81,7 @@ class DAO {
                 
                 if let result = JSON as? [String: Any]{
                     photoObject.name = result["name"] as! String?
-                    
+                    self.reloadDelegate?.reloadCollectionView()
                 }
             }
             

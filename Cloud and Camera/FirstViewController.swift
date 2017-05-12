@@ -57,15 +57,22 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         // Configure the cell
         //downloading the image is making it take foreverrrrr
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: currentPhoto.downloadURL)
-            DispatchQueue.main.async {
-                cell.imageView.image = UIImage(data: data!)
-                currentPhoto.actualImage = UIImage(data: data!)
+        
+            if(currentPhoto.actualImage == nil){
+                
+                DispatchQueue.global().async {
+                let data = try? Data(contentsOf: currentPhoto.downloadURL)
+                    
+                    DispatchQueue.main.async {
+                        cell.imageView.image = UIImage(data: data!)
+                        currentPhoto.actualImage = UIImage(data: data!)
+                    }
+                    
+                }
+            } else {
+                cell.imageView.image = currentPhoto.actualImage
             }
-        }
 
-        //cell.imageView.image = UIImage(named: "ship")
 
         return cell
     }

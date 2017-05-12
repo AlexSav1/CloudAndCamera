@@ -14,6 +14,8 @@ class DAO {
     
     static let sharedInstance = DAO()
     
+    var reloadDelegate: ReloadDelegate?
+    
     let storage : FIRStorage
     let storageRef : FIRStorageReference
     let imagesReference : FIRStorageReference

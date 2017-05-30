@@ -84,3 +84,24 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

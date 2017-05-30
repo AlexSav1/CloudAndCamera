@@ -6,6 +6,8 @@
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access Photo Library?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Alique is the man</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

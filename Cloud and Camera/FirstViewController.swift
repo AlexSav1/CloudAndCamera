@@ -29,27 +29,12 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Register cell classes
         //self.collectionView!.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         //self.dao.createPhotosFromDB()
         print("Count: \(self.dao.photos.count)")
         self.collectionView.reloadData()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     // MARK: UICollectionViewDataSource
     
@@ -73,15 +58,21 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Configure the cell
         //downloading the image is making it take forever
         
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: currentPhoto.downloadURL)
-            DispatchQueue.main.async {
-                cell.imageView.image = UIImage(data: data!)
-                currentPhoto.actualImage = UIImage(data: data!)
+            if(currentPhoto.actualImage == nil){
+                
+                DispatchQueue.global().async {
+                let data = try? Data(contentsOf: currentPhoto.downloadURL)
+                    
+                    DispatchQueue.main.async {
+                        cell.imageView.image = UIImage(data: data!)
+                        currentPhoto.actualImage = UIImage(data: data!)
+                    }
+                    
+                }
+            } else {
+                cell.imageView.image = currentPhoto.actualImage
             }
-        }
 
-        //cell.imageView.image = UIImage(named: "ship")
 
         return cell
     }

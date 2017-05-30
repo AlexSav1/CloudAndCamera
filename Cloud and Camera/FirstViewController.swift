@@ -71,7 +71,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         let currentPhoto: Photo = self.dao.photos[indexPath.row]
         
         // Configure the cell
-        //downloading the image is making it take foreverrrrr
+        //downloading the image is making it take forever
+        
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: currentPhoto.downloadURL)
             DispatchQueue.main.async {
